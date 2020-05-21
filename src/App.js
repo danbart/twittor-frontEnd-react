@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import { ToastContainer } from 'react-toastify'
+// pages
+import SignInSignUp from './pages/SignInSignUp'
+import { AuthContext } from './utils/contexts'
+import { isUserLogedApi } from './api/auth'
 
-function App() {
+export default function App() {
+
+  // estados en react
+  const [user, setUser]=useState(null);
+  const [loadUser, setLoadUser] = useState(false);
+  const [refresCheckLogin, setRefresCheckLogin] = useState(false)
+
+  useEffect(() => {
+    setUser(isUserLogedApi())
+    setRefresCheckLogin(false)
+    setLoadUser(true)
+  }, [refresCheckLogin])
+
+  if(!loadUser) return null;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  <AuthContext.Provider value={user} >{user ? <h1>Estas logueado</h1> :<SignInSignUp setRefresCheckLogin={setRefresCheckLogin} /> }
+    <ToastContainer position="top-right" autoClose={5000} hideProgressBar newestOnTop={false} closeOnClick rtl={false} pauseOnVisibilityChange draggable pauseOnHover />
+  </AuthContext.Provider >
+    );  
 }
-
-export default App;
