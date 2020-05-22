@@ -66,14 +66,14 @@ export function getTokenApi(){
 }
 
 export function logoutApi(){
-    localStorage.removeItem()
+    localStorage.removeItem(TOKEN)
 }
 
 export function isUserLogedApi(){
     const token = getTokenApi()
 
     if (!token){
-        // logoutApi()
+        logoutApi()
         return null
     }
     if(isExpired(token)){
