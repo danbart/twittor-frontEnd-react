@@ -5,11 +5,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faUser, faUsers, faPowerOff } from '@fortawesome/free-solid-svg-icons'
 import { logoutApi } from '../../api/auth'
 import LogoWhite from '../../assets/png/logo-white.png'
+import useAuth from '../../hooks/useAuth'
 
 import './LeftMenu.scss'
 
 export default function LeftMenu(props) {
     const { setRefresCheckLogin } = props
+    const user = useAuth();
+
 
     const logout = () => {
         logoutApi()
@@ -21,7 +24,7 @@ export default function LeftMenu(props) {
 
             <Link to="/"> <FontAwesomeIcon icon={faHome} /> Inicio</Link>
             <Link to="/users"> <FontAwesomeIcon icon={faUsers} /> Usuarios</Link>
-            <Link to="/profile"> <FontAwesomeIcon icon={faUser} /> Perfil</Link>
+            <Link to={`/${user?._id}`}> <FontAwesomeIcon icon={faUser} /> Perfil</Link>
             <Link onClick={logout} to=""> <FontAwesomeIcon icon={faPowerOff} /> Cerrar sesión</Link>
 
             <Button>Twittoar</Button>
