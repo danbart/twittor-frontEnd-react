@@ -11,7 +11,7 @@ import { getUserApi } from '../../api/user'
 import './user.scss'
 
 function User(props) {
-    const { match } = props
+    const { match, setRefresCheckLogin } = props
     const { params } = match
     const loggedUser = useAuth()
     const [user, setUser] = useState(null)
@@ -26,7 +26,7 @@ function User(props) {
     }, [params])
 
     return (
-        <BasicLayout className="user">
+        <BasicLayout className="user" setRefresCheckLogin={setRefresCheckLogin}>
             <div className="user__tittle">
             <h2>{user?`${user.Nombre} ${user.Apellido}`:"Este usuario no existe"} </h2>
             </div>

@@ -1,10 +1,13 @@
 import React, { useState, useCallback } from 'react'
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import { Form, Button, Row, Col, Spinner } from 'react-bootstrap'
 import DatePicker from 'react-datepicker'
 import es from 'date-fns/locale/es'
+import { toast } from 'react-toastify'
+
 import { useDropzone } from 'react-dropzone'
 import { API_HOST } from '../../../utils/constants'
 import { Camara } from '../../../utils/Icons'
+import { uploadBannerApi, uploadAvatarApi, updateInfoApi } from '../../../api/user'
 
 import './EditUserForm.scss'
 
@@ -20,6 +23,7 @@ export default function EditUserForm(props) {
         user?.Avatar ? `${API_HOST}/obtenerAvatar?id=${user.id}` : null
     )
     const [avatarFile, setAvatarFile] = useState(null)
+    const [login, setLogin] = useState(false)
 
     // el callback sirve para ejecutar la función al momento de cargar un archivo
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -55,12 +59,31 @@ export default function EditUserForm(props) {
         setFormData({...formData, [e.target.name]: e.target.value });
     }
 
-    const onSubmit = e => {
+    const onSubmit = async e => {
         e.preventDefault();
+        setLogin(true)
         
-        console.log(formData)
-        console.log(bannerFile)
-        console.log(avatarFile)
+        if (bannerFile ) {
+            await uploadBannerApi(bannerFile).catch(()=>{
+                toast.error("Error al subir el nuevo banner")
+            })
+        }
+
+        if (avatarFile ) {
+            await uploadAvatarApi(avatarFile).catch(()=>{
+                toast.error("Error al subir el nuevo avatar")
+            })
+        }
+        
+        await updateInfoApi(formData).then(() => {
+            setShowModal(false)
+            toast.success('Actualizado Correctamente')
+        }).catch(() =>{
+            toast.error('Error al actualizar los datos')
+        })
+        
+        setLogin(false)
+        window.location.reload();
     }
     return (
         <div className="edit-user-form">
@@ -97,7 +120,7 @@ export default function EditUserForm(props) {
                         locale={es} selected={new Date(formData.FechaNacimiento)} onChange={date => setFormData({...formData, FechaNacimiento: date})} />
                     </Form.Group>
 
-                    <Button className="btn-submit" variant="primary" type="submit">Actualizar</Button>
+                <Button className="btn-submit" disabled={login} variant="primary" type="submit">{login && <Spinner animation="border" size="sm" /> } Actualizar</Button>
             </Form>
         </div>
     )
