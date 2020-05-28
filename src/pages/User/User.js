@@ -7,14 +7,18 @@ import BasicLayout from '../../layout/BasicLayout'
 import BannerAvatar from '../../components/User/BannerAvatar'
 import InfoUser from '../../components/User/InfoUser'
 import { getUserApi } from '../../api/user'
+import { getUserTweetsApi } from '../../api/tweet'
+import ListTweets from '../../components/ListTweets'
 
 import './user.scss'
 
 function User(props) {
     const { match, setRefresCheckLogin } = props
+    const [user, setUser] = useState(null)
+    const [tweets, setTweets] = useState(null)
     const { params } = match
     const loggedUser = useAuth()
-    const [user, setUser] = useState(null)
+
 
     useEffect(() => {
         getUserApi(params.id).then(res  => {
@@ -25,6 +29,14 @@ function User(props) {
         })
     }, [params])
 
+    useEffect(() => {
+        getUserTweetsApi(params.id,1).then(res => {
+            setTweets(res)
+        }).catch(() => {
+            setTweets([])
+        })
+    }, [params])
+
     return (
         <BasicLayout className="user" setRefresCheckLogin={setRefresCheckLogin}>
             <div className="user__tittle">
@@ -32,7 +44,11 @@ function User(props) {
             </div>
             <BannerAvatar user={user}  loggedUser={loggedUser} />
             <InfoUser user={user} />
-            <div className="user__tweets">Lista de Tweets</div>
+            <div className="user__tweets">
+                <h3>Tweets</h3>
+                {tweets && <ListTweets tweets={tweets} /> }
+                
+            </div>
         </BasicLayout>
     )
 }
