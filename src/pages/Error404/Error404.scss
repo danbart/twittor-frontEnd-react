@@ -1,5 +1,32 @@
 @import '../../scss/index.scss';
 
 .error404 {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    img {
+        &:first-of-type{
+            width: 100px;
+            margin-bottom: 30px;
+        }
+        &:last-child {
+            width: 500px;
+        }
+    }
+
+    a  {
+        margin-top: 30px;
+        color: $font-light;
+        font-size: 30px;
+        font-weight: bold;
+
+        &:hover{
+            color: $primary;
+            text-decoration: none;
+        }
+    }
 
 }
