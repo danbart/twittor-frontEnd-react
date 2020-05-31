@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/twittor-frontEnd-react/static/css/main.fca3c0f5.chunk.css",
-    "main.js": "/twittor-frontEnd-react/static/js/main.dff37d01.chunk.js",
-    "main.js.map": "/twittor-frontEnd-react/static/js/main.dff37d01.chunk.js.map",
+    "main.js": "/twittor-frontEnd-react/static/js/main.02f4091b.chunk.js",
+    "main.js.map": "/twittor-frontEnd-react/static/js/main.02f4091b.chunk.js.map",
     "runtime-main.js": "/twittor-frontEnd-react/static/js/runtime-main.89c31c9a.js",
     "runtime-main.js.map": "/twittor-frontEnd-react/static/js/runtime-main.89c31c9a.js.map",
     "static/css/2.cd817f6e.chunk.css": "/twittor-frontEnd-react/static/css/2.cd817f6e.chunk.css",
     "static/js/2.6256d803.chunk.js": "/twittor-frontEnd-react/static/js/2.6256d803.chunk.js",
     "static/js/2.6256d803.chunk.js.map": "/twittor-frontEnd-react/static/js/2.6256d803.chunk.js.map",
     "index.html": "/twittor-frontEnd-react/index.html",
-    "precache-manifest.4999a8bb440f76374fdaf95501c23180.js": "/twittor-frontEnd-react/precache-manifest.4999a8bb440f76374fdaf95501c23180.js",
+    "precache-manifest.f54b0e5949c8c12a6bc9cf33b14ae377.js": "/twittor-frontEnd-react/precache-manifest.f54b0e5949c8c12a6bc9cf33b14ae377.js",
     "service-worker.js": "/twittor-frontEnd-react/service-worker.js",
     "static/css/2.cd817f6e.chunk.css.map": "/twittor-frontEnd-react/static/css/2.cd817f6e.chunk.css.map",
     "static/css/main.fca3c0f5.chunk.css.map": "/twittor-frontEnd-react/static/css/main.fca3c0f5.chunk.css.map",
@@ -28,6 +28,6 @@
     "static/css/2.cd817f6e.chunk.css",
     "static/js/2.6256d803.chunk.js",
     "static/css/main.fca3c0f5.chunk.css",
-    "static/js/main.dff37d01.chunk.js"
+    "static/js/main.02f4091b.chunk.js"
   ]
 }
