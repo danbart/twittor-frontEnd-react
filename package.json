@@ -53,4 +53,5 @@
   },
   "devDependencies": {
     "gh-pages": "^3.0.0"
-
+  }
+}

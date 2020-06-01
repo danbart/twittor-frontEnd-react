@@ -26,7 +26,7 @@ export default function User(props) {
                 alt={`${user.Nombre} ${user.Apellido}`}
             />
             <Media.Body>
-                <h5>${user.Nombre} ${user.Apellido}</h5>
+                <h5>{user.Nombre} {user.Apellido}</h5>
                 <p>{userInfo?.Biografia}</p>
             </Media.Body>
         </Media>

@@ -10,8 +10,8 @@ import {
 
 export default function Routing(props) {
     const { setRefresCheckLogin } = props
+    // todo se envuelve  en router
     return (
-        // todo se envuelve  en router
         <Router>
             {/* switch sirve para que solo me muestre una ruta exacta y no este buscando parecidos  */}
             <Switch>
